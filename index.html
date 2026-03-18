@@ -10,55 +10,58 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
   --bg:#ffffff;
-  --bg-alt:#f7f5f2;
-  --bg-mid:#f0ede8;
-  --bg-deep:#e8e4de;
-  --ink:#0c0c0b;
-  --ink-mid:#3a3830;
+  --bg-alt:#f8f6f3;
+  --bg-mid:#f2efe9;
+  --navy:#1b2d5a;
+  --navy-mid:#2a4080;
+  --ink:#1a1816;
+  --ink-mid:#3d3a34;
   --ink-dim:#7a7468;
   --ink-faint:#b0a898;
-  --signal:#ff5c39;
-  --signal-dim:rgba(255,92,57,.1);
-  --teal-accent:#1dbfa8;
+  --signal:#c8392b;
+  --gold:#b5872a;
   --display:'Clash Display',system-ui,sans-serif;
   --mono:'Space Mono',monospace;
 }
 
 html{scroll-behavior:smooth}
 body{font-family:var(--display);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+/* Thin patriotic top bar */
+body::before{content:'';display:block;height:4px;background:linear-gradient(90deg,var(--navy) 0%,var(--navy) 60%,var(--signal) 60%,var(--signal) 80%,var(--gold) 80%,var(--gold) 100%);position:fixed;top:0;left:0;right:0;z-index:200}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
 
 /* === NAV === */
 nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  background:rgba(255,255,255,.92);backdrop-filter:blur(20px);
-  border-bottom:1px solid rgba(0,0,0,.08);
+  position:fixed;top:4px;left:0;right:0;z-index:100;
+  background:rgba(255,255,255,.95);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(0,0,0,.09);
+  box-shadow:0 1px 12px rgba(0,0,0,.05);
 }
 .nav-bar{
   max-width:1400px;margin:0 auto;
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 40px;height:60px;
+  padding:0 40px;height:64px;
 }
 .nav-brand{
-  font-family:var(--mono);font-size:12px;font-weight:700;
-  letter-spacing:2px;text-transform:uppercase;color:var(--ink);
+  font-family:var(--display);font-size:15px;font-weight:700;
+  letter-spacing:.5px;color:var(--navy);
 }
 .nav-brand span{color:var(--signal)}
 .nav-links{display:flex;gap:0;align-items:center}
 .nav-links a{
-  font-family:var(--mono);font-size:11px;font-weight:400;
-  letter-spacing:1.5px;text-transform:uppercase;
-  color:var(--ink-dim);padding:20px 18px;
-  border-left:1px solid rgba(0,0,0,.06);
+  font-family:var(--display);font-size:13px;font-weight:500;
+  letter-spacing:.3px;
+  color:var(--ink-dim);padding:22px 20px;
   transition:color .2s,background .2s;
 }
-.nav-links a:hover{color:var(--ink);background:rgba(0,0,0,.03)}
+.nav-links a:hover{color:var(--navy);background:rgba(27,45,90,.04)}
 .nav-links a:last-child{
   color:#fff;background:var(--signal);
-  font-weight:700;border-left:none;
+  font-weight:600;margin-left:8px;padding:10px 22px;
+  border-radius:2px;
 }
-.nav-links a:last-child:hover{background:var(--teal-accent)}
+.nav-links a:last-child:hover{background:#a02e22}
 
 .m-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
 .m-toggle svg{width:22px;height:22px;stroke:var(--ink);fill:none}
@@ -66,66 +69,79 @@ nav{
 /* === HERO === */
 .hero{
   min-height:100vh;display:flex;flex-direction:column;
-  justify-content:flex-end;padding:140px 40px 80px;
+  justify-content:flex-end;padding:160px 40px 80px;
   max-width:1400px;margin:0 auto;
   position:relative;
 }
 .hero-meta{
   font-family:var(--mono);font-size:11px;
-  letter-spacing:3px;text-transform:uppercase;
-  color:var(--signal);margin-bottom:32px;
-  display:flex;align-items:center;gap:16px;
+  letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--signal);margin-bottom:28px;
+  display:flex;align-items:center;gap:14px;
 }
-.hero-meta::before{content:'';width:40px;height:1px;background:var(--signal)}
+.hero-meta::before{content:'';width:32px;height:2px;background:var(--signal)}
 .hero h1{
-  font-family:var(--display);font-weight:600;
-  font-size:clamp(44px,6.5vw,96px);
-  line-height:.95;letter-spacing:-2px;
-  color:var(--ink);margin-bottom:32px;
-  max-width:900px;
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(40px,6vw,88px);
+  line-height:1;letter-spacing:-1px;
+  color:var(--navy);margin-bottom:28px;
+  max-width:860px;
 }
 .hero h1 .dim{color:var(--ink-dim)}
 .hero-desc{
   font-family:var(--display);font-weight:400;
-  font-size:18px;line-height:1.6;color:var(--ink-mid);
-  max-width:540px;margin-bottom:48px;
+  font-size:18px;line-height:1.65;color:var(--ink-mid);
+  max-width:560px;margin-bottom:48px;
 }
 .hero-row{
-  display:flex;align-items:center;gap:32px;
-  padding-top:40px;border-top:1px solid rgba(0,0,0,.1);
+  display:flex;align-items:center;gap:24px;
+  padding-top:40px;border-top:2px solid var(--bg-mid);
 }
-.btn-signal{
+.btn-primary{
   display:inline-flex;align-items:center;gap:10px;
-  background:var(--signal);color:#fff;
-  font-family:var(--mono);font-size:12px;font-weight:700;
-  letter-spacing:1.5px;text-transform:uppercase;
-  padding:16px 32px;transition:all .25s;
+  background:var(--navy);color:#fff;
+  font-family:var(--display);font-size:13px;font-weight:600;
+  letter-spacing:.5px;
+  padding:15px 32px;border-radius:2px;transition:all .25s;
 }
-.btn-signal:hover{background:var(--teal-accent);transform:translateY(-1px)}
+.btn-primary:hover{background:var(--navy-mid);transform:translateY(-1px);box-shadow:0 4px 16px rgba(27,45,90,.2)}
 .btn-ghost{
-  font-family:var(--mono);font-size:11px;font-weight:400;
-  letter-spacing:1.5px;text-transform:uppercase;
-  color:var(--ink-dim);padding:16px 0;
-  border-bottom:1px solid var(--ink-faint);
-  transition:all .2s;
+  font-family:var(--display);font-size:13px;font-weight:500;
+  color:var(--ink-dim);padding:15px 0;
+  border-bottom:2px solid var(--ink-faint);
+  transition:all .2s;letter-spacing:.3px;
 }
-.btn-ghost:hover{color:var(--ink);border-color:var(--ink)}
+.btn-ghost:hover{color:var(--navy);border-color:var(--navy)}
 
-.hero-badges{
-  position:absolute;right:40px;bottom:80px;
-  display:flex;flex-direction:column;gap:12px;
-  align-items:flex-end;
+/* === CERT STRIP === */
+.cert-strip{
+  background:var(--navy);
+  padding:48px 40px;
 }
-.hero-badge{
+.cert-strip-inner{
+  max-width:1400px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:rgba(255,255,255,.1);
+}
+.cert-card{
+  background:var(--navy);
+  padding:36px 40px;
+  display:flex;align-items:center;gap:28px;
+  transition:background .2s;
+}
+.cert-card:hover{background:var(--navy-mid)}
+.cert-seal{
+  flex-shrink:0;width:80px;height:80px;
+}
+.cert-info{}
+.cert-info strong{
+  display:block;font-family:var(--display);font-size:16px;
+  font-weight:700;color:#fff;letter-spacing:.2px;margin-bottom:4px;
+}
+.cert-info span{
   font-family:var(--mono);font-size:10px;
   letter-spacing:1.5px;text-transform:uppercase;
-  color:var(--ink-dim);padding:8px 16px;
-  border:1px solid rgba(0,0,0,.1);
-  background:var(--bg-alt);
-}
-.hero-badge .dot{
-  display:inline-block;width:6px;height:6px;
-  border-radius:50%;background:var(--teal-accent);margin-right:8px;
+  color:rgba(255,255,255,.5);line-height:1.5;
 }
 
 /* === DIVIDER === */
@@ -139,38 +155,40 @@ nav{
   border-bottom:1px solid rgba(0,0,0,.08);
 }
 .svc-header h2{
-  font-family:var(--display);font-weight:600;
-  font-size:clamp(28px,3.5vw,48px);letter-spacing:-1px;
-  line-height:1.05;
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(28px,3.5vw,48px);letter-spacing:-.5px;
+  line-height:1.05;color:var(--navy);
 }
-.svc-header h2 .dim{color:var(--ink-dim)}
+.svc-header h2 .dim{color:var(--ink-dim);font-weight:400}
 .svc-header p{
-  font-family:var(--mono);font-size:11px;
-  letter-spacing:1.5px;text-transform:uppercase;
-  color:var(--ink-dim);text-align:right;max-width:280px;
+  font-family:var(--display);font-size:14px;
+  color:var(--ink-dim);text-align:right;max-width:280px;line-height:1.5;
 }
 .svc-item{
-  display:grid;grid-template-columns:200px 1fr 1.2fr;
+  display:grid;grid-template-columns:80px 1fr 1.2fr;
   border-bottom:1px solid rgba(0,0,0,.07);
-  transition:background .3s;cursor:default;
+  transition:background .25s;cursor:default;
 }
 .svc-item:hover{background:var(--bg-alt)}
+.svc-item:hover .svc-num{color:var(--signal)}
 .svc-num{
-  padding:36px 40px;
-  font-family:var(--mono);font-size:11px;color:var(--ink-faint);
-  letter-spacing:2px;
+  padding:36px 32px;
+  font-family:var(--mono);font-size:12px;color:var(--ink-faint);
+  letter-spacing:1px;
   border-right:1px solid rgba(0,0,0,.06);
+  display:flex;align-items:center;
+  transition:color .25s;
 }
 .svc-name{
   padding:36px 40px;
-  font-family:var(--display);font-size:20px;font-weight:500;
-  letter-spacing:-.3px;color:var(--ink);
+  font-family:var(--display);font-size:19px;font-weight:600;
+  letter-spacing:-.2px;color:var(--ink);
   display:flex;align-items:center;
   border-right:1px solid rgba(0,0,0,.06);
 }
 .svc-desc{
   padding:36px 40px;
-  font-size:14px;line-height:1.7;color:var(--ink-mid);
+  font-size:14px;line-height:1.75;color:var(--ink-mid);
   display:flex;align-items:center;
 }
 
@@ -185,59 +203,64 @@ nav{
   border-right:1px solid rgba(0,0,0,.07);
 }
 .split-right{
-  background:var(--bg-mid);padding:80px 64px;
+  background:var(--navy);padding:80px 64px;
   display:flex;flex-direction:column;justify-content:center;
 }
 .split-label{
   font-family:var(--mono);font-size:10px;
-  letter-spacing:3px;text-transform:uppercase;
-  color:var(--signal);margin-bottom:32px;
+  letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--signal);margin-bottom:28px;
 }
-.split h2{
-  font-family:var(--display);font-weight:600;
-  font-size:clamp(28px,3vw,44px);letter-spacing:-1px;
-  line-height:1.08;margin-bottom:32px;
+.split-left .split-label{color:var(--signal)}
+.split-right .split-label{color:rgba(255,255,255,.5)}
+.split-left h2{
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(28px,3vw,44px);letter-spacing:-.5px;
+  line-height:1.08;margin-bottom:32px;color:var(--navy);
 }
 .split-point{
   padding:20px 0;
   border-top:1px solid rgba(0,0,0,.08);
 }
 .split-point h4{
-  font-size:16px;font-weight:500;letter-spacing:-.2px;
+  font-size:16px;font-weight:600;letter-spacing:-.1px;
   margin-bottom:8px;color:var(--ink);
 }
 .split-point p{
-  font-size:14px;line-height:1.65;color:var(--ink-mid);
+  font-size:14px;line-height:1.7;color:var(--ink-mid);
 }
-.split-stat{margin-bottom:32px}
+.split-stat{margin-bottom:36px}
 .split-stat strong{
-  font-family:var(--display);font-size:64px;font-weight:700;
-  color:var(--signal);line-height:1;letter-spacing:-2px;
+  font-family:var(--display);font-size:72px;font-weight:700;
+  color:var(--gold);line-height:1;letter-spacing:-2px;
 }
 .split-stat span{
-  display:block;font-family:var(--mono);font-size:11px;
+  display:block;font-family:var(--mono);font-size:10px;
   letter-spacing:2px;text-transform:uppercase;
-  color:var(--ink-faint);margin-top:8px;
+  color:rgba(255,255,255,.55);margin-top:10px;
 }
 
 /* === AWARDS === */
 .awards-bar{
   border-top:1px solid rgba(0,0,0,.08);
   border-bottom:1px solid rgba(0,0,0,.08);
+  background:var(--bg-alt);
   display:grid;grid-template-columns:repeat(3,1fr);
 }
 .aw-cell{
   padding:40px;text-align:center;
-  border-right:1px solid rgba(0,0,0,.06);
+  border-right:1px solid rgba(0,0,0,.07);
 }
 .aw-cell:last-child{border-right:none}
+.aw-icon{font-size:22px;margin-bottom:10px}
 .aw-year{
   font-family:var(--mono);font-size:10px;
-  letter-spacing:2px;color:var(--ink-faint);margin-bottom:8px;
+  letter-spacing:2px;color:var(--ink-faint);margin-bottom:6px;
+  text-transform:uppercase;
 }
 .aw-name{
   font-family:var(--display);font-size:16px;
-  font-weight:500;letter-spacing:-.2px;color:var(--ink);
+  font-weight:600;letter-spacing:-.1px;color:var(--navy);
 }
 
 /* === TEAM === */
@@ -248,84 +271,88 @@ nav{
   border-bottom:1px solid rgba(0,0,0,.08);
 }
 .team-header h2{
-  font-family:var(--display);font-weight:600;
-  font-size:clamp(28px,3.5vw,48px);letter-spacing:-1px;line-height:1.05;
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(28px,3.5vw,48px);letter-spacing:-.5px;line-height:1.05;
+  color:var(--navy);
 }
 .team-header p{
-  font-family:var(--mono);font-size:11px;
-  letter-spacing:1.5px;text-transform:uppercase;
+  font-family:var(--display);font-size:14px;
   color:var(--ink-dim);
 }
-.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(0,0,0,.08)}
+.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 .team-member{
-  display:grid;grid-template-columns:220px 1fr;
-  background:var(--bg);
+  display:grid;grid-template-columns:200px 1fr;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:4px;overflow:hidden;
+  transition:box-shadow .3s;
 }
+.team-member:hover{box-shadow:0 4px 24px rgba(0,0,0,.09)}
 .team-img{overflow:hidden;aspect-ratio:3/4}
-.team-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(.3);transition:filter .4s}
+.team-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(.2);transition:filter .4s}
 .team-member:hover .team-img img{filter:grayscale(0)}
-.team-bio{padding:40px;display:flex;flex-direction:column;justify-content:center}
+.team-bio{padding:36px;display:flex;flex-direction:column;justify-content:center;background:var(--bg)}
 .team-bio h3{
-  font-family:var(--display);font-size:24px;
-  font-weight:600;letter-spacing:-.5px;margin-bottom:4px;
+  font-family:var(--display);font-size:22px;
+  font-weight:700;letter-spacing:-.3px;margin-bottom:4px;color:var(--navy);
 }
 .team-bio .role{
-  font-family:var(--mono);font-size:11px;
+  font-family:var(--mono);font-size:10px;
   letter-spacing:1.5px;text-transform:uppercase;
-  color:var(--signal);margin-bottom:20px;
+  color:var(--signal);margin-bottom:18px;
 }
-.team-bio p{font-size:14px;line-height:1.7;color:var(--ink-mid)}
+.team-bio p{font-size:14px;line-height:1.75;color:var(--ink-mid)}
 
 /* === CTA === */
 .cta-full{
-  background:var(--signal);
-  padding:80px 40px;
+  background:var(--navy);
+  padding:88px 40px;
   display:flex;align-items:center;justify-content:center;
-  gap:64px;
+  gap:72px;
 }
 .cta-full h2{
-  font-family:var(--display);font-size:clamp(32px,4vw,56px);
-  font-weight:600;color:#fff;letter-spacing:-1.5px;
-  line-height:1.05;max-width:480px;
+  font-family:var(--display);font-size:clamp(28px,3.5vw,52px);
+  font-weight:700;color:#fff;letter-spacing:-.5px;
+  line-height:1.1;max-width:460px;
 }
 .cta-full-right{display:flex;flex-direction:column;gap:20px;align-items:flex-start}
-.cta-full p{font-size:15px;line-height:1.6;color:rgba(255,255,255,.8);max-width:360px}
-.btn-black{
+.cta-full p{font-size:15px;line-height:1.65;color:rgba(255,255,255,.65);max-width:360px}
+.btn-cta{
   display:inline-flex;align-items:center;gap:10px;
-  background:#fff;color:var(--ink);
-  font-family:var(--mono);font-size:12px;font-weight:700;
-  letter-spacing:1.5px;text-transform:uppercase;
-  padding:18px 36px;transition:all .25s;
+  background:var(--signal);color:#fff;
+  font-family:var(--display);font-size:13px;font-weight:600;
+  letter-spacing:.5px;
+  padding:16px 36px;border-radius:2px;transition:all .25s;
 }
-.btn-black:hover{background:var(--bg-alt);transform:translateY(-1px)}
+.btn-cta:hover{background:#a02e22;transform:translateY(-1px);box-shadow:0 4px 16px rgba(200,57,43,.3)}
 
 /* === CONTACT === */
 .contact-section{
   max-width:1400px;margin:0 auto;padding:80px 40px;
 }
 .contact-header{
-  margin-bottom:48px;padding-bottom:32px;
+  margin-bottom:48px;padding-bottom:28px;
   border-bottom:1px solid rgba(0,0,0,.08);
 }
 .contact-header h2{
-  font-family:var(--display);font-weight:600;
-  font-size:clamp(28px,3vw,40px);letter-spacing:-1px;
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(28px,3vw,40px);letter-spacing:-.5px;color:var(--navy);
 }
 .contact-row{
   display:grid;grid-template-columns:repeat(4,1fr);
-  gap:1px;background:rgba(0,0,0,.08);
+  gap:24px;
 }
 .contact-cell{
-  background:var(--bg);padding:40px;
+  background:var(--bg-alt);padding:36px;
+  border-radius:4px;border:1px solid rgba(0,0,0,.07);
 }
 .contact-cell .cl{
   font-family:var(--mono);font-size:10px;
   letter-spacing:2px;text-transform:uppercase;
-  color:var(--ink-faint);margin-bottom:16px;
+  color:var(--ink-faint);margin-bottom:14px;
 }
-.contact-cell p{font-size:14px;line-height:1.7;color:var(--ink-mid)}
+.contact-cell p{font-size:14px;line-height:1.75;color:var(--ink-mid)}
 .contact-cell a{color:var(--signal);transition:color .2s}
-.contact-cell a:hover{color:var(--teal-accent)}
+.contact-cell a:hover{color:var(--navy)}
 
 /* === FOOTER === */
 footer{
@@ -339,49 +366,50 @@ footer{
 }
 .foot p{font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--ink-faint)}
 .foot a{color:var(--signal);text-decoration:none}
-.foot-links{display:flex;gap:24px}
+.foot-links{display:flex;gap:28px}
 .foot-links a{
-  font-family:var(--mono);font-size:10px;
-  letter-spacing:1px;text-transform:uppercase;
-  color:var(--ink-faint);transition:color .2s;
+  font-family:var(--display);font-size:12px;font-weight:500;
+  color:var(--ink-dim);transition:color .2s;
 }
-.foot-links a:hover{color:var(--ink)}
+.foot-links a:hover{color:var(--navy)}
 
 /* === REVEAL === */
-.rv{opacity:0;transform:translateY(20px);transition:opacity .5s ease-out,transform .5s ease-out}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .5s ease-out,transform .5s ease-out}
 .rv.v{opacity:1;transform:translateY(0)}
 
 /* === RESPONSIVE === */
 @media(max-width:1024px){
-  .svc-item{grid-template-columns:120px 1fr;gap:0}
+  .svc-item{grid-template-columns:64px 1fr;gap:0}
   .svc-desc{display:none}
   .split{grid-template-columns:1fr}
   .team-grid{grid-template-columns:1fr}
   .contact-row{grid-template-columns:repeat(2,1fr)}
-  .hero-badges{display:none}
   .cta-full{flex-direction:column;gap:32px;text-align:center}
   .cta-full-right{align-items:center}
+  .cert-strip-inner{grid-template-columns:1fr}
 }
 @media(max-width:768px){
   .nav-links{
-    display:none;position:fixed;top:60px;left:0;right:0;
-    background:rgba(255,255,255,.97);flex-direction:column;
+    display:none;position:fixed;top:68px;left:0;right:0;
+    background:rgba(255,255,255,.98);flex-direction:column;
     border-bottom:1px solid rgba(0,0,0,.08);
+    box-shadow:0 8px 24px rgba(0,0,0,.08);
   }
   .nav-links.open{display:flex}
-  .nav-links a{border-left:none;border-bottom:1px solid rgba(0,0,0,.06);padding:16px 40px}
+  .nav-links a{border-bottom:1px solid rgba(0,0,0,.06);padding:16px 40px;margin:0}
+  .nav-links a:last-child{border-radius:0;margin:0;padding:16px 40px}
   .m-toggle{display:block}
-  .hero{padding:120px 24px 60px;min-height:auto}
-  .hero h1{font-size:38px;letter-spacing:-1px}
+  .hero{padding:140px 24px 60px;min-height:auto}
+  .hero h1{font-size:36px;letter-spacing:-.5px}
   .hero-row{flex-direction:column;align-items:flex-start;gap:16px}
   .svc-header{flex-direction:column;align-items:flex-start;gap:16px;padding:48px 24px 32px}
   .svc-header p{text-align:left}
-  .svc-item{grid-template-columns:80px 1fr}
-  .svc-num,.svc-name{padding:24px}
+  .svc-item{grid-template-columns:56px 1fr}
+  .svc-num,.svc-name{padding:20px 20px}
   .split-left,.split-right{padding:48px 24px}
   .team-member{grid-template-columns:1fr}
-  .team-img{aspect-ratio:16/9;max-height:240px}
-  .team-bio{padding:28px 24px}
+  .team-img{aspect-ratio:16/9;max-height:220px}
+  .team-bio{padding:24px}
   .contact-row{grid-template-columns:1fr}
   .team-section,.contact-section{padding:56px 24px}
   .cta-full{padding:56px 24px}
@@ -390,7 +418,9 @@ footer{
   .aw-cell:last-child{border-bottom:none}
   .nav-bar{padding:0 24px}
   .foot{flex-direction:column;gap:12px;text-align:center}
-  .svc-section{padding:0 0}
+  .svc-section{padding:0}
+  .cert-strip{padding:32px 24px}
+  .cert-card{padding:24px}
 }
 </style>
 </head>
@@ -399,7 +429,7 @@ footer{
 <!-- NAV -->
 <nav>
   <div class="nav-bar">
-    <a href="#" class="nav-brand">ALD<span>&</span>ASSOCIATES</a>
+    <a href="#" class="nav-brand">ALD<span> & </span>Associates</a>
     <div class="nav-links" id="navLinks">
       <a href="#services">Services</a>
       <a href="#approach">Approach</a>
@@ -415,19 +445,84 @@ footer{
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-meta">Leadership Development & Consulting</div>
+  <div class="hero-meta">Leadership Development &amp; Consulting</div>
   <h1 class="rv">Culture Drives Behavior.<br><span class="dim">We Transform Both.</span></h1>
-  <p class="hero-desc rv">ALD & Associates delivers leadership development, workforce transformation, and organizational improvement for federal agencies and mission-driven organizations — nationwide.</p>
+  <p class="hero-desc rv">ALD &amp; Associates delivers leadership development, workforce transformation, and organizational improvement for federal agencies and mission-driven organizations — nationwide.</p>
   <div class="hero-row rv">
-    <a href="https://calendly.com/ald-associates/15min" target="_blank" class="btn-signal">Schedule Free Meeting →</a>
+    <a href="https://calendly.com/ald-associates/15min" target="_blank" class="btn-primary">Schedule a Free Consultation →</a>
     <a href="#services" class="btn-ghost">Explore Services</a>
   </div>
-  <div class="hero-badges">
-    <div class="hero-badge"><span class="dot"></span>SDVOSB Certified</div>
-    <div class="hero-badge"><span class="dot"></span>GSA Schedule Holder</div>
-    <div class="hero-badge"><span class="dot"></span>SBA Certified SDB</div>
-  </div>
 </section>
+
+<!-- CERTIFICATION STRIP -->
+<div class="cert-strip">
+  <div class="cert-strip-inner">
+
+    <!-- SDVOSB -->
+    <div class="cert-card rv">
+      <div class="cert-seal">
+        <svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="45" cy="45" r="43" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+          <circle cx="45" cy="45" r="36" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+          <!-- Star -->
+          <polygon points="45,12 49.5,26.5 64.5,26.5 52.5,35.5 57,50 45,41 33,50 37.5,35.5 25.5,26.5 40.5,26.5" fill="#b5872a"/>
+          <!-- Bottom arc dashes -->
+          <path d="M20,62 Q45,78 70,62" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1" stroke-dasharray="3,3"/>
+          <!-- Label text -->
+          <text x="45" y="70" text-anchor="middle" font-family="Georgia,serif" font-size="7" font-weight="bold" fill="rgba(255,255,255,.6)" letter-spacing="1">SDVOSB</text>
+        </svg>
+      </div>
+      <div class="cert-info">
+        <strong>SDVOSB Certified</strong>
+        <span>Service-Disabled<br>Veteran-Owned<br>Small Business</span>
+      </div>
+    </div>
+
+    <!-- GSA MAS -->
+    <div class="cert-card rv">
+      <div class="cert-seal">
+        <svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="45" cy="45" r="43" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+          <circle cx="45" cy="45" r="36" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+          <!-- Building / columns icon -->
+          <rect x="28" y="52" width="5" height="16" fill="#b5872a"/>
+          <rect x="35.5" y="52" width="5" height="16" fill="#b5872a"/>
+          <rect x="43" y="52" width="5" height="16" fill="#b5872a"/>
+          <rect x="50.5" y="52" width="5" height="16" fill="#b5872a"/>
+          <rect x="58" y="52" width="5" height="16" fill="#b5872a"/>
+          <rect x="24" y="48" width="43" height="4" rx="1" fill="#b5872a"/>
+          <polygon points="24,48 45,30 66,48" fill="rgba(181,135,42,.7)"/>
+          <!-- GSA text -->
+          <text x="45" y="27" text-anchor="middle" font-family="Georgia,serif" font-size="8" font-weight="bold" fill="rgba(255,255,255,.7)" letter-spacing="1.5">GSA</text>
+        </svg>
+      </div>
+      <div class="cert-info">
+        <strong>GSA Schedule Holder</strong>
+        <span>Multiple Award<br>Schedule Contract<br>Holder</span>
+      </div>
+    </div>
+
+    <!-- SBA SDB -->
+    <div class="cert-card rv">
+      <div class="cert-seal">
+        <svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="45" cy="45" r="43" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+          <circle cx="45" cy="45" r="36" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+          <!-- Shield shape -->
+          <path d="M45,18 L62,26 L62,46 Q62,60 45,68 Q28,60 28,46 L28,26 Z" fill="none" stroke="#b5872a" stroke-width="2"/>
+          <path d="M45,24 L57,30 L57,46 Q57,57 45,63 Q33,57 33,46 L33,30 Z" fill="rgba(181,135,42,.15)"/>
+          <!-- SBA letters -->
+          <text x="45" y="49" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="bold" fill="#b5872a" letter-spacing="1">SBA</text>
+        </svg>
+      </div>
+      <div class="cert-info">
+        <strong>SBA Certified SDB</strong>
+        <span>Small Disadvantaged<br>Business<br>Certification</span>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <div class="div-line"></div>
 
@@ -435,36 +530,36 @@ footer{
 <div class="svc-section" id="services">
   <div class="svc-header">
     <h2 class="rv">What We <span class="dim">Deliver</span></h2>
-    <p>Six core capabilities tailored to your organization's needs</p>
+    <p>Six core capabilities tailored to your organization's mission and needs.</p>
   </div>
   <div class="svc-item rv">
-    <div class="svc-num">SVC—01</div>
+    <div class="svc-num">01.</div>
     <div class="svc-name">Leadership Development</div>
     <div class="svc-desc">Executive coaching and programs that transform managers into leaders who inspire teams and drive innovation across the enterprise.</div>
   </div>
   <div class="svc-item rv">
-    <div class="svc-num">SVC—02</div>
+    <div class="svc-num">02.</div>
     <div class="svc-name">Team Development</div>
     <div class="svc-desc">Proven strategies to enhance collaboration, build trust, and create high-performing teams with accountability and clear communication.</div>
   </div>
   <div class="svc-item rv">
-    <div class="svc-num">SVC—03</div>
+    <div class="svc-num">03.</div>
     <div class="svc-name">Strategic Planning</div>
     <div class="svc-desc">Clear goals, actionable strategies, and sustainable growth frameworks aligned with your organization's vision and long-term mission.</div>
   </div>
   <div class="svc-item rv">
-    <div class="svc-num">SVC—04</div>
-    <div class="svc-name">Training Design & Delivery</div>
+    <div class="svc-num">04.</div>
+    <div class="svc-name">Training Design &amp; Delivery</div>
     <div class="svc-desc">Customized, interactive training programs with methodologies that maximize knowledge transfer and skill development.</div>
   </div>
   <div class="svc-item rv">
-    <div class="svc-num">SVC—05</div>
+    <div class="svc-num">05.</div>
     <div class="svc-name">Program Management</div>
     <div class="svc-desc">End-to-end program management solutions that optimize resources, streamline operations, and achieve measurable outcomes.</div>
   </div>
   <div class="svc-item rv">
-    <div class="svc-num">SVC—06</div>
-    <div class="svc-name">Policies & Procedures</div>
+    <div class="svc-num">06.</div>
+    <div class="svc-name">Policies &amp; Procedures</div>
     <div class="svc-desc">Effective policy frameworks aligned with industry best practices and legal requirements for compliance and consistency.</div>
   </div>
 </div>
@@ -489,7 +584,7 @@ footer{
   </div>
   <div class="split-right">
     <div class="split-label rv">By the Numbers</div>
-    <div class="split-stat rv"><strong>30+</strong><span>Years Combined HR & Leadership Experience</span></div>
+    <div class="split-stat rv"><strong>30+</strong><span>Years Combined HR &amp; Leadership Experience</span></div>
     <div class="split-stat rv"><strong>3</strong><span>Major Awards — 2023, 2024, 2025</span></div>
     <div class="split-stat rv"><strong>2</strong><span>Locations + Virtual Nationwide</span></div>
   </div>
@@ -497,15 +592,15 @@ footer{
 
 <!-- AWARDS -->
 <div class="awards-bar">
-  <div class="aw-cell rv"><div class="aw-year">2023</div><div class="aw-name">People's Choice Award</div></div>
-  <div class="aw-cell rv"><div class="aw-year">2024</div><div class="aw-name">Small Business of the Year</div></div>
-  <div class="aw-cell rv"><div class="aw-year">2025</div><div class="aw-name">Veteran-Owned Business of the Year</div></div>
+  <div class="aw-cell rv"><div class="aw-icon">★</div><div class="aw-year">2023</div><div class="aw-name">People's Choice Award</div></div>
+  <div class="aw-cell rv"><div class="aw-icon">★</div><div class="aw-year">2024</div><div class="aw-name">Small Business of the Year</div></div>
+  <div class="aw-cell rv"><div class="aw-icon">★</div><div class="aw-year">2025</div><div class="aw-name">Veteran-Owned Business of the Year</div></div>
 </div>
 
 <!-- TEAM -->
 <div class="team-section" id="team">
   <div class="team-header">
-    <h2 class="rv">The <span class="dim">Team</span></h2>
+    <h2 class="rv">The <span style="color:var(--ink-dim);font-weight:400">Team</span></h2>
     <p class="rv">Strategy meets science</p>
   </div>
   <div class="team-grid">
@@ -513,7 +608,7 @@ footer{
       <div class="team-img"><img src="https://ald-associates.com/wp-content/uploads/2023/10/al2.jpg" alt="Alfranda Al Durr" loading="lazy"></div>
       <div class="team-bio">
         <h3>Alfranda "Al" Durr</h3>
-        <div class="role">President & CEO</div>
+        <div class="role">President &amp; CEO</div>
         <p>30+ years in Human Resources, Equal Opportunity, and program management. 28 years as a commissioned officer in the Army National Guard. A practitioner focused on practical results and people-centered leadership.</p>
       </div>
     </div>
@@ -533,13 +628,13 @@ footer{
   <h2>Ready to transform your organization?</h2>
   <div class="cta-full-right">
     <p>Let's talk about leadership development, team building, and workforce strategy tailored to your mission.</p>
-    <a href="https://calendly.com/ald-associates/15min" target="_blank" class="btn-black">Schedule Free 30-Min Meeting →</a>
+    <a href="https://calendly.com/ald-associates/15min" target="_blank" class="btn-cta">Schedule a Free 30-Min Meeting →</a>
   </div>
 </div>
 
 <!-- CONTACT -->
 <div class="contact-section" id="contact">
-  <div class="contact-header"><h2 class="rv">Contact</h2></div>
+  <div class="contact-header"><h2 class="rv">Get in Touch</h2></div>
   <div class="contact-row">
     <div class="contact-cell rv">
       <div class="cl">Email</div>
@@ -563,7 +658,7 @@ footer{
 <!-- FOOTER -->
 <footer>
   <div class="foot">
-    <p>&copy; 2026 ALD & Associates LLC · Designed by <a href="https://nolvek.online" target="_blank">Nolvek</a></p>
+    <p>&copy; 2026 ALD &amp; Associates LLC · Designed by <a href="https://nolvek.online" target="_blank">Nolvek</a></p>
     <div class="foot-links">
       <a href="#services">Services</a>
       <a href="#approach">Approach</a>
