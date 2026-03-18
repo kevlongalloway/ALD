@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALD & Associates — Leadership Development & Organizational Consulting</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=General+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --ink:#1b1b18;
+  --ink-soft:#3a3a34;
+  --stone:#6d6b63;
+  --warm:#9c9888;
+  --sand:#ddd8cc;
+  --linen:#f3f0ea;
+  --paper:#f9f7f3;
+  --white:#ffffff;
+  --forest:#1a4a3a;
+  --forest-light:#24634e;
+  --sage:#7ea88e;
+  --terracotta:#c05a3d;
+  --terracotta-soft:#d4735a;
+  --amber-warm:#e8a84c;
+  --serif:'Libre Baskerville',Georgia,serif;
+  --sans:'General Sans',system-ui,sans-serif;
+}
+
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* === ANNOUNCEMENT BAR === */
+.ann-bar{
+  background:var(--forest);color:rgba(255,255,255,.85);
+  font-size:12px;letter-spacing:.3px;
+  padding:10px 32px;text-align:center;
+  font-weight:500;
+}
+.ann-bar strong{color:#fff}
+.ann-bar a{color:var(--amber-warm);text-decoration:underline;text-underline-offset:2px}
+
+/* === NAV === */
+header{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid rgba(0,0,0,.06);
+  transition:box-shadow .3s;
+}
+header.scrolled{box-shadow:0 1px 20px rgba(0,0,0,.05)}
+.nav-wrap{
+  max-width:1240px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;height:64px;
+}
+.nav-brand{display:flex;align-items:center;gap:10px}
+.nav-brand-icon{
+  width:38px;height:38px;border-radius:8px;
+  background:var(--forest);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-weight:700;font-size:14px;letter-spacing:-.5px;
+}
+.nav-brand-text{line-height:1.15}
+.nav-brand-text strong{display:block;font-size:15px;font-weight:700;letter-spacing:-.2px;color:var(--ink)}
+.nav-brand-text span{font-size:10px;color:var(--stone);letter-spacing:.5px;font-weight:500}
+
+.nav-menu{display:flex;gap:2px;align-items:center}
+.nav-menu a{
+  font-size:13.5px;font-weight:500;color:var(--ink-soft);
+  padding:8px 14px;border-radius:6px;transition:all .2s;
+}
+.nav-menu a:hover{background:var(--linen);color:var(--ink)}
+.nav-cta{
+  background:var(--forest)!important;color:#fff!important;
+  font-weight:600!important;padding:10px 22px!important;border-radius:8px!important;
+}
+.nav-cta:hover{background:var(--forest-light)!important}
+
+.burger{display:none;background:none;border:none;cursor:pointer;padding:6px}
+.burger svg{width:24px;height:24px;stroke:var(--ink)}
+
+/* === HERO === */
+.hero{
+  max-width:1240px;margin:0 auto;
+  padding:72px 32px 56px;
+  display:grid;grid-template-columns:1.15fr 1fr;gap:56px;
+  align-items:center;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11.5px;font-weight:600;letter-spacing:1.8px;
+  text-transform:uppercase;color:var(--forest);margin-bottom:24px;
+}
+.hero-eyebrow::before{content:'';width:28px;height:2px;background:var(--forest)}
+.hero h1{
+  font-family:var(--serif);font-weight:700;
+  font-size:clamp(36px,4.5vw,56px);
+  line-height:1.12;letter-spacing:-.5px;color:var(--ink);margin-bottom:24px;
+}
+.hero h1 em{font-style:italic;font-weight:400;color:var(--forest)}
+.hero-desc{font-size:17px;line-height:1.65;color:var(--stone);max-width:480px;margin-bottom:36px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px}
+
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 28px;font-family:var(--sans);font-size:14px;font-weight:600;
+  border-radius:8px;border:none;cursor:pointer;transition:all .25s;
+}
+.btn-forest{background:var(--forest);color:#fff}
+.btn-forest:hover{background:var(--forest-light);transform:translateY(-1px);box-shadow:0 6px 20px rgba(26,74,58,.18)}
+.btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--sand)}
+.btn-outline:hover{border-color:var(--ink)}
+
+.hero-trust{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.hero-trust img{height:36px;opacity:.55;filter:grayscale(1);transition:all .3s}
+.hero-trust img:hover{opacity:1;filter:none}
+.hero-trust-label{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--warm)}
+
+.hero-visual{position:relative}
+.hero-img-main{
+  border-radius:16px;overflow:hidden;
+  box-shadow:0 20px 60px rgba(0,0,0,.08);
+  aspect-ratio:4/3;
+}
+.hero-img-main img{width:100%;height:100%;object-fit:cover}
+.hero-float-card{
+  position:absolute;bottom:-28px;left:-24px;
+  background:var(--white);border-radius:14px;padding:24px 28px;
+  box-shadow:0 8px 32px rgba(0,0,0,.08);border:1px solid var(--sand);
+  max-width:220px;
+}
+.hero-float-card .quote-mark{
+  font-family:var(--serif);font-size:40px;line-height:1;color:var(--sage);
+  margin-bottom:4px;
+}
+.hero-float-card p{font-family:var(--serif);font-style:italic;font-size:13px;line-height:1.5;color:var(--ink-soft)}
+
+/* === CREDIBILITY STRIP === */
+.cred-strip{
+  background:var(--forest);padding:20px 32px;
+  overflow:hidden;
+}
+.cred-scroll{display:flex;animation:scroll 22s linear infinite}
+.cred-set{display:flex;flex-shrink:0}
+.cred-item{
+  display:flex;align-items:center;gap:12px;
+  padding:0 48px;white-space:nowrap;
+  color:rgba(255,255,255,.7);font-size:13px;font-weight:500;
+  border-right:1px solid rgba(255,255,255,.08);
+}
+.cred-item svg{width:18px;height:18px;stroke:var(--sage);fill:none;stroke-width:1.8;flex-shrink:0}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* === SERVICES === */
+.services-bg{background:var(--linen)}
+.sec{padding:96px 32px;max-width:1240px;margin:0 auto}
+.sec-label{font-size:11.5px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--forest);margin-bottom:10px}
+.sec-heading{
+  font-family:var(--serif);font-weight:700;
+  font-size:clamp(28px,3.2vw,42px);line-height:1.12;letter-spacing:-.5px;margin-bottom:16px;
+}
+.sec-heading em{font-style:italic;font-weight:400;color:var(--forest)}
+.sec-sub{font-size:16px;line-height:1.65;color:var(--stone);max-width:520px;margin-bottom:48px}
+
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.svc-card{
+  background:var(--white);border:1px solid rgba(0,0,0,.05);
+  border-radius:14px;padding:36px;transition:all .3s;
+  position:relative;overflow:hidden;
+}
+.svc-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.06);border-color:var(--forest)}
+.svc-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--forest);transform:scaleX(0);transform-origin:left;
+  transition:transform .3s;
+}
+.svc-card:hover::before{transform:scaleX(1)}
+.svc-num{
+  font-family:var(--serif);font-size:28px;font-weight:700;
+  color:var(--sand);margin-bottom:20px;line-height:1;
+}
+.svc-card h3{font-size:17px;font-weight:700;letter-spacing:-.2px;margin-bottom:12px;color:var(--ink)}
+.svc-card p{font-size:14px;line-height:1.7;color:var(--stone)}
+
+/* === WHY ALD === */
+.why-grid{
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;
+  margin-top:48px;
+}
+.why-card{
+  padding:40px;border-radius:14px;
+  background:var(--forest);color:#fff;
+  position:relative;overflow:hidden;
+}
+.why-card:nth-child(2){background:var(--ink)}
+.why-card:nth-child(3){background:#2c3e50}
+.why-card h3{
+  font-family:var(--serif);font-size:22px;font-weight:700;
+  margin-bottom:14px;line-height:1.2;
+}
+.why-card p{font-size:14.5px;line-height:1.7;color:rgba(255,255,255,.7)}
+.why-icon{
+  width:48px;height:48px;border-radius:12px;
+  background:rgba(255,255,255,.1);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:24px;
+}
+.why-icon svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:1.5}
+
+/* === AWARDS === */
+.awards-strip{
+  background:var(--white);border-top:1px solid var(--sand);border-bottom:1px solid var(--sand);
+  padding:48px 32px;
+}
+.awards-inner{
+  max-width:1240px;margin:0 auto;
+  display:flex;align-items:center;justify-content:center;
+  gap:48px;flex-wrap:wrap;text-align:center;
+}
+.award{display:flex;flex-direction:column;align-items:center;gap:6px}
+.award-year{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--warm)}
+.award-name{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--ink);letter-spacing:-.2px}
+.award-dot{width:4px;height:4px;border-radius:50%;background:var(--sand);flex-shrink:0}
+
+/* === TEAM === */
+.team-bg{background:var(--linen)}
+.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:48px}
+.team-card{
+  display:grid;grid-template-columns:200px 1fr;
+  background:var(--white);border:1px solid rgba(0,0,0,.05);
+  border-radius:16px;overflow:hidden;transition:box-shadow .3s;
+}
+.team-card:hover{box-shadow:0 8px 32px rgba(0,0,0,.06)}
+.team-photo{aspect-ratio:3/4;overflow:hidden}
+.team-photo img{width:100%;height:100%;object-fit:cover}
+.team-info{padding:32px;display:flex;flex-direction:column;justify-content:center}
+.team-info h3{font-family:var(--serif);font-size:20px;font-weight:700;margin-bottom:4px;letter-spacing:-.3px}
+.team-info .role{font-size:13px;color:var(--forest);font-weight:600;margin-bottom:14px}
+.team-info p{font-size:14px;line-height:1.65;color:var(--stone)}
+
+/* === CTA SECTION === */
+.cta-section{
+  margin:0 32px 80px;max-width:1176px;margin-left:auto;margin-right:auto;
+  background:linear-gradient(135deg,var(--forest) 0%,#1a3a30 100%);
+  border-radius:24px;padding:80px 64px;
+  display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center;
+  position:relative;overflow:hidden;
+  margin-bottom:80px;
+}
+.cta-section::before{
+  content:'';position:absolute;right:-80px;bottom:-80px;
+  width:320px;height:320px;border-radius:50%;
+  background:rgba(255,255,255,.03);
+}
+.cta-section h2{
+  font-family:var(--serif);font-size:clamp(26px,3vw,36px);
+  font-weight:700;color:#fff;line-height:1.2;letter-spacing:-.3px;
+  position:relative;
+}
+.cta-section h2 em{font-weight:400;color:rgba(255,255,255,.5)}
+.cta-section p{
+  color:rgba(255,255,255,.6);font-size:15px;line-height:1.65;
+  margin-top:16px;position:relative;
+}
+.cta-right{
+  display:flex;flex-direction:column;align-items:flex-start;
+  gap:16px;position:relative;
+}
+.cta-right .btn-white{
+  background:#fff;color:var(--forest);padding:16px 32px;
+  font-size:14px;font-weight:700;border-radius:10px;
+  transition:all .25s;
+}
+.cta-right .btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.cta-right .cta-note{font-size:13px;color:rgba(255,255,255,.45)}
+
+/* === CONTACT === */
+.contact-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;
+}
+.c-card{
+  background:var(--white);border:1px solid rgba(0,0,0,.05);
+  border-radius:14px;padding:32px;
+}
+.c-card-icon{
+  width:44px;height:44px;border-radius:10px;
+  background:var(--linen);display:flex;align-items:center;justify-content:center;
+  margin-bottom:20px;
+}
+.c-card-icon svg{width:20px;height:20px;stroke:var(--forest);fill:none;stroke-width:1.5}
+.c-card h4{font-family:var(--serif);font-size:16px;font-weight:700;margin-bottom:12px}
+.c-card p{font-size:14px;line-height:1.7;color:var(--stone)}
+.c-card a{color:var(--forest);font-weight:600}
+.c-card a:hover{text-decoration:underline}
+
+/* === FOOTER === */
+footer{
+  background:var(--ink);color:rgba(255,255,255,.4);
+  padding:40px 32px;
+}
+.foot-inner{
+  max-width:1240px;margin:0 auto;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:16px;
+}
+.foot-inner p{font-size:12px}
+.foot-links{display:flex;gap:20px}
+.foot-links a{color:rgba(255,255,255,.5);font-size:12px;font-weight:500;transition:color .2s}
+.foot-links a:hover{color:#fff}
+.foot-social{display:flex;gap:12px}
+.foot-social a{
+  width:32px;height:32px;border-radius:8px;
+  background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;
+  transition:background .2s;
+}
+.foot-social a:hover{background:rgba(255,255,255,.12)}
+.foot-social svg{width:16px;height:16px;fill:rgba(255,255,255,.5)}
+
+/* === REVEAL === */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .55s ease-out,transform .55s ease-out}
+.rv.vis{opacity:1;transform:translateY(0)}
+
+/* === RESPONSIVE === */
+@media(max-width:1024px){
+  .hero{grid-template-columns:1fr;gap:40px;padding-top:48px}
+  .hero-visual{max-width:480px}
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .why-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr}
+  .team-card{grid-template-columns:180px 1fr}
+  .cta-section{grid-template-columns:1fr;padding:56px 40px}
+}
+@media(max-width:768px){
+  .ann-bar{font-size:11px;padding:8px 16px}
+  .nav-menu{
+    display:none;position:fixed;top:64px;left:0;right:0;
+    background:var(--paper);flex-direction:column;padding:16px;gap:4px;
+    border-bottom:1px solid var(--sand);box-shadow:0 12px 40px rgba(0,0,0,.06);
+  }
+  .nav-menu.open{display:flex}
+  .burger{display:block}
+  .hero{padding:36px 20px 40px}
+  .hero-float-card{display:none}
+  .hero-trust img{height:28px}
+  .svc-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .sec{padding:72px 20px}
+  .awards-inner{gap:28px}
+  .team-card{grid-template-columns:1fr}
+  .team-photo{aspect-ratio:16/9;max-height:240px}
+  .cta-section{margin:0 16px 60px;padding:40px 24px;border-radius:16px;text-align:center}
+  .cta-right{align-items:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT -->
+<div class="ann-bar">
+  <strong>Veteran-Owned Business of the Year 2025</strong> · SDVOSB Certified · <a href="https://calendly.com/ald-associates/15min" target="_blank">Schedule a Free Consultation →</a>
+</div>
+
+<!-- NAV -->
+<header id="hdr">
+  <div class="nav-wrap">
+    <a href="#" class="nav-brand">
+      <div class="nav-brand-icon">ALD</div>
+      <div class="nav-brand-text">
+        <strong>ALD & Associates</strong>
+        <span>Leadership Development & Consulting</span>
+      </div>
+    </a>
+    <nav class="nav-menu" id="navMenu">
+      <a href="#services">Services</a>
+      <a href="#why">Why ALD</a>
+      <a href="#team">Team</a>
+      <a href="#training">Training</a>
+      <a href="#contact">Contact</a>
+      <a href="https://calendly.com/ald-associates/15min" target="_blank" class="nav-cta">Book a Call</a>
+    </nav>
+    <button class="burger" id="burgerBtn" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Leadership & Workforce Consulting</div>
+    <h1>Culture Drives Behavior. <em>We Transform Both.</em></h1>
+    <p class="hero-desc">ALD & Associates delivers leadership development, organizational improvement, and workforce transformation for federal agencies and mission-driven organizations.</p>
+    <div class="hero-actions">
+      <a href="https://calendly.com/ald-associates/15min" target="_blank" class="btn btn-forest">
+        Schedule a Free 30-Min Meeting
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#services" class="btn btn-outline">View Services</a>
+    </div>
+    <div class="hero-trust">
+      <span class="hero-trust-label">Certified</span>
+      <img src="https://ald-associates.com/wp-content/uploads/2025/11/SBA2.png" alt="SBA SDVOSB Certified">
+      <img src="https://ald-associates.com/wp-content/uploads/2025/11/GSA4-300x90.jpg" alt="GSA Schedule Holder">
+    </div>
+  </div>
+  <div class="hero-visual rv">
+    <div class="hero-img-main">
+      <img src="https://ald-associates.com/wp-content/uploads/2020/07/diverse-businesspeople-smiling-while-meeting-toget-3GPBVZC-scaled.jpg" alt="ALD team workshop">
+    </div>
+    <div class="hero-float-card">
+      <div class="quote-mark">"</div>
+      <p>Culture drives behavior. Behavior drives results. We transform all three.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CREDIBILITY STRIP -->
+<div class="cred-strip">
+  <div class="cred-scroll">
+    <div class="cred-set">
+      <div class="cred-item"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>SDVOSB Certified</div>
+      <div class="cred-item"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>GSA Schedule Holder</div>
+      <div class="cred-item"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Small Business of the Year 2024</div>
+      <div class="cred-item"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Veteran-Owned Business of the Year 2025</div>
+      <div class="cred-item"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Nationwide Service · DC · Tacoma · Virtual</div>
+    </div>
+    <div class="cred-set">
+      <div class="cred-item"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>SDVOSB Certified</div>
+      <div class="cred-item"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>GSA Schedule Holder</div>
+      <div class="cred-item"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Small Business of the Year 2024</div>
+      <div class="cred-item"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Veteran-Owned Business of the Year 2025</div>
+      <div class="cred-item"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Nationwide Service · DC · Tacoma · Virtual</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div class="services-bg" id="services">
+  <div class="sec">
+    <div class="sec-label rv">What We Do</div>
+    <h2 class="sec-heading rv">Six Core <em>Capabilities</em></h2>
+    <p class="sec-sub rv">We offer tailored professional development services designed to build culture, sharpen leadership, and drive measurable organizational outcomes.</p>
+    <div class="svc-grid">
+      <div class="svc-card rv">
+        <div class="svc-num">01</div>
+        <h3>Leadership Development</h3>
+        <p>Executive coaching and development programs that transform managers into leaders who inspire teams and drive innovation.</p>
+      </div>
+      <div class="svc-card rv">
+        <div class="svc-num">02</div>
+        <h3>Team Development</h3>
+        <p>Proven strategies to enhance collaboration, build trust, and create high-performing teams with accountability and clear communication.</p>
+      </div>
+      <div class="svc-card rv">
+        <div class="svc-num">03</div>
+        <h3>Strategic Planning</h3>
+        <p>Clear goals, actionable strategies, and sustainable growth frameworks aligned with your organization's vision and mission.</p>
+      </div>
+      <div class="svc-card rv">
+        <div class="svc-num">04</div>
+        <h3>Training Programs</h3>
+        <p>Customized, interactive training design, development, and delivery with methodologies that maximize knowledge transfer.</p>
+      </div>
+      <div class="svc-card rv">
+        <div class="svc-num">05</div>
+        <h3>Program Management</h3>
+        <p>End-to-end program management solutions that optimize resources, streamline operations, and achieve desired outcomes.</p>
+      </div>
+      <div class="svc-card rv">
+        <div class="svc-num">06</div>
+        <h3>Policies & Procedures</h3>
+        <p>Effective policies aligned with industry best practices and legal requirements — ensuring compliance, clarity, and consistency.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY ALD -->
+<div id="why">
+  <div class="sec">
+    <div class="sec-label rv">Why ALD</div>
+    <h2 class="sec-heading rv">What Sets Us <em>Apart</em></h2>
+    <div class="why-grid">
+      <div class="why-card rv">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <h3>Leadership That Lasts</h3>
+        <p>We design training and coaching experiences that create lasting behavior change — transforming managers into leaders and employees into ambassadors.</p>
+      </div>
+      <div class="why-card rv">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Culture by Design</h3>
+        <p>From civility to collaboration, our programs build trust, inclusion, and accountability across every level of your organization.</p>
+      </div>
+      <div class="why-card rv">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Results That Matter</h3>
+        <p>Our data-driven approach — grounded in behavioral science and validated research — ensures measurable improvements in engagement, retention, and performance.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AWARDS -->
+<div class="awards-strip" id="training">
+  <div class="awards-inner">
+    <div class="award rv">
+      <span class="award-year">2023</span>
+      <span class="award-name">People's Choice Award</span>
+    </div>
+    <div class="award-dot"></div>
+    <div class="award rv">
+      <span class="award-year">2024</span>
+      <span class="award-name">Small Business of the Year</span>
+    </div>
+    <div class="award-dot"></div>
+    <div class="award rv">
+      <span class="award-year">2025</span>
+      <span class="award-name">Veteran-Owned Business of the Year</span>
+    </div>
+  </div>
+</div>
+
+<!-- TEAM -->
+<div class="team-bg" id="team">
+  <div class="sec">
+    <div class="sec-label rv">Our Team</div>
+    <h2 class="sec-heading rv">Strategy Meets <em>Science</em></h2>
+    <p class="sec-sub rv">Al and Dr. Davis blend decades of leadership, research, and hands-on experience to help organizations build stronger culture and measurable outcomes.</p>
+    <div class="team-grid">
+      <div class="team-card rv">
+        <div class="team-photo">
+          <img src="https://ald-associates.com/wp-content/uploads/2023/10/al2.jpg" alt="Alfranda Al Durr" loading="lazy">
+        </div>
+        <div class="team-info">
+          <h3>Alfranda "Al" Durr</h3>
+          <div class="role">President & CEO</div>
+          <p>30+ years in Human Resources, Equal Opportunity, and program management. 28 years as a commissioned officer in the Army National Guard. Pragmatic, people-centered leadership.</p>
+        </div>
+      </div>
+      <div class="team-card rv">
+        <div class="team-photo">
+          <img src="https://ald-associates.com/wp-content/uploads/2024/06/andrea2.jpg" alt="Dr. Andrea Davis" loading="lazy">
+        </div>
+        <div class="team-info">
+          <h3>Dr. Andrea Davis</h3>
+          <div class="role">Chief Social Scientist</div>
+          <p>Ph.D. from the University of Florida. Leads research, curriculum development, survey design, and assessment analysis — ensuring work is grounded in data and behavioral science.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section rv">
+  <div>
+    <h2>Ready to elevate <em>your organization?</em></h2>
+    <p>Our team is ready to collaborate on leadership development, team building, strategic planning, and workforce transformation tailored to your needs.</p>
+  </div>
+  <div class="cta-right">
+    <a href="https://calendly.com/ald-associates/15min" target="_blank" class="btn-white btn">Schedule a Free 30-Min Meeting →</a>
+    <span class="cta-note">No commitment · Virtual or in-person</span>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact">
+  <div class="sec">
+    <div class="sec-label rv">Get In Touch</div>
+    <h2 class="sec-heading rv">Contact <em>Us</em></h2>
+    <div class="contact-grid">
+      <div class="c-card rv">
+        <div class="c-card-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <h4>Email</h4>
+        <p><a href="mailto:info@ald-associates.com">info@ald-associates.com</a></p>
+        <p style="margin-top:8px"><a href="tel:2028387470">(202) 838-7470</a></p>
+      </div>
+      <div class="c-card rv">
+        <div class="c-card-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h4>Locations</h4>
+        <p>Washington, DC<br>Tacoma, WA<br>Virtual — Nationwide</p>
+      </div>
+      <div class="c-card rv">
+        <div class="c-card-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg></div>
+        <h4>Connect</h4>
+        <p><a href="https://www.linkedin.com/company/ald-associates/" target="_blank">LinkedIn</a> · <a href="https://www.facebook.com/Aldandassociates" target="_blank">Facebook</a> · <a href="https://www.instagram.com/ald_associates/" target="_blank">Instagram</a> · <a href="https://www.youtube.com/@aldassociatesllc5883" target="_blank">YouTube</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-inner">
+    <p>&copy; 2026 ALD & Associates LLC. All rights reserved. Designed by <a href="https://nolvek.online" target="_blank" style="color:rgba(255,255,255,.6)">Nolvek</a></p>
+    <div class="foot-links">
+      <a href="#services">Services</a>
+      <a href="#team">Team</a>
+      <a href="#contact">Contact</a>
+      <a href="https://ald-associates.com/about-ald/" target="_blank">Capability Statement</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('navMenu').classList.toggle('open');
+});
+document.querySelectorAll('#navMenu a').forEach(a=>
+  a.addEventListener('click',()=>document.getElementById('navMenu').classList.remove('open'))
+);
+const hdr=document.getElementById('hdr');
+window.addEventListener('scroll',()=>{
+  hdr.classList.toggle('scrolled',window.scrollY>10);
+},{passive:true});
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}});
+},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.rv').forEach((el,i)=>{
+  const p=el.parentElement;
+  if(p.classList.contains('svc-grid')||p.classList.contains('why-grid')||p.classList.contains('contact-grid')||p.classList.contains('team-grid')){
+    el.style.transitionDelay=`${Array.from(p.children).indexOf(el)*.07}s`;
+  }
+  io.observe(el);
+});
+</script>
+</body>
+</html>
